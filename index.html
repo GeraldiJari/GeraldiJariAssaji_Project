@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suitmedia Ideas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="SuitmediaLogo.png" alt="Logo" class="logo">
+        <nav class="nav-bar">
+            <a href="#" class="nav-menu" data-page="work">Work</a>
+            <a href="#" class="nav-menu" data-page="about">About</a>
+            <a href="#" class="nav-menu" data-page="services">Services</a>
+            <a href="#" class="nav-menu active" data-page="ideas">Ideas</a>
+            <a href="#" class="nav-menu" data-page="careers">Careers</a>
+            <a href="#" class="nav-menu" data-page="contact">Contact</a>
+        </nav>
+    </header>
+    <section class="banner">
+        <div class="banner-content">
+            <h1>Ideas</h1>
+            <p>Where all our great things begin</p>
+        </div>
+    </section>
+
+    <section class="posts">
+        <div class="post-filters">
+            <div class="post-sorts" id="post-count">
+                <p>Showing <span id="start-post">1</span> - <span id="end-post">10</span> of <span id="total-posts">100</span></p>
+            </div>
+            <div class="post-sorts">
+                <p>Show per page:</p>
+                <select id="per-page">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+                <p>Sort by:</p>
+                <select id="sort-order">
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="post-list" id="post-list">
+            <!-- Posts will be dynamically inserted here -->
+        </div>
+
+        <div class="pagination" id="pagination">
+            <!-- Pagination buttons will be dynamically inserted here -->
+        </div>
+
+        <script>
+            // Data Array Post
+            const posts = [
+                { imgSrc: 'img2.jpg', date: '5 September 2022', title: 'Kenali Tingkatan Influencers berdasarkan Jumlah Followers' },
+                { imgSrc: 'img3.jpg', date: '9 September 2022', title: 'Jangan Asal Pilih Influencer, Berikut Cara Menyusun Strategi Influencer Dengan Benar Agar Followers Ikut Meningkat' },
+                { imgSrc: 'img2.jpg', date: '5 September 2022', title: 'Kenali Tingkatan Influencers berdasarkan Jumlah Followers' },
+                { imgSrc: 'img3.jpg', date: '9 September 2022', title: 'Jangan Asal Pilih Influencer, Berikut Cara Menyusun Strategi Influencer Dengan Benar Agar Followers Ikut Meningkat' },
+                { imgSrc: 'img2.jpg', date: '5 September 2022', title: 'Kenali Tingkatan Influencers berdasarkan Jumlah Followers' },
+                { imgSrc: 'img3.jpg', date: '9 September 2022', title: 'Jangan Asal Pilih Influencer, Berikut Cara Menyusun Strategi Influencer Dengan Benar Agar Followers Ikut Meningkat' },
+                { imgSrc: 'img2.jpg', date: '5 September 2022', title: 'Kenali Tingkatan Influencers berdasarkan Jumlah Followers' },
+                { imgSrc: 'img3.jpg', date: '9 September 2022', title: 'Jangan Asal Pilih Influencer, Berikut Cara Menyusun Strategi Influencer Dengan Benar Agar Followers Ikut Meningkat' },
+                { imgSrc: 'img2.jpg', date: '5 September 2022', title: 'Kenali Tingkatan Influencers berdasarkan Jumlah Followers' },
+                { imgSrc: 'img3.jpg', date: '9 September 2022', title: 'Jangan Asal Pilih Influencer, Berikut Cara Menyusun Strategi Influencer Dengan Benar Agar Followers Ikut Meningkat' },
+                { imgSrc: 'img2.jpg', date: '5 September 2022', title: 'Kenali Tingkatan Influencers berdasarkan Jumlah Followers' },
+                { imgSrc: 'img3.jpg', date: '9 September 2022', title: 'Jangan Asal Pilih Influencer, Berikut Cara Menyusun Strategi Influencer Dengan Benar Agar Followers Ikut Meningkat' },
+                { imgSrc: 'img2.jpg', date: '12 September 2022', title: 'Memahami Perbedaan Antara Macro dan Micro Influencers' },
+                { imgSrc: 'img3.jpg', date: '15 September 2022', title: '5 Tips Memilih Influencer yang Tepat untuk Brand Anda' },
+                { imgSrc: 'img2.jpg', date: '18 September 2022', title: 'Bagaimana Cara Mengukur Kesuksesan Kampanye Influencer Marketing?' },
+                { imgSrc: 'img3.jpg', date: '20 September 2022', title: 'Mengenal Tren Influencer Marketing di Tahun 2022' },
+                { imgSrc: 'img2.jpg', date: '22 September 2022', title: 'Cara Membuat Brief yang Jelas untuk Influencer' },
+                { imgSrc: 'img3.jpg', date: '25 September 2022', title: 'Mengenal Strategi Influencer Marketing dengan Anggaran Terbatas' },
+                { imgSrc: 'img2.jpg', date: '27 September 2022', title: 'Membangun Hubungan Jangka Panjang dengan Influencer' },
+                { imgSrc: 'img3.jpg', date: '30 September 2022', title: 'Apa yang Harus Diperhatikan Ketika Bekerja Sama dengan Influencer?' },
+                { imgSrc: 'img2.jpg', date: '2 Oktober 2022', title: 'Memahami Peran Influencer dalam Kampanye Digital' },
+                { imgSrc: 'img3.jpg', date: '5 Oktober 2022', title: 'Tips Berkolaborasi dengan Influencer untuk Meningkatkan Engagement' },
+                { imgSrc: 'img2.jpg', date: '8 Oktober 2022', title: 'Strategi Mengelola Influencer untuk Kampanye Jangka Panjang' },
+                { imgSrc: 'img3.jpg', date: '12 Oktober 2022', title: 'Mengukur ROI dari Kampanye Influencer Marketing' }
+            ];
+
+            let currentPage = 1;
+            let perPage = 10;
+
+            function renderPosts(page, perPage) {
+                const postList = document.getElementById('post-list');
+                postList.innerHTML = ''; // Clear existing content
+                
+                const startIndex = (page - 1) * perPage;
+                const endIndex = startIndex + perPage;
+                const paginatedPosts = posts.slice(startIndex, endIndex);
+                
+                paginatedPosts.forEach(post => {
+                    const postCard = `
+                        <div class="post-card">
+                            <img class="lazyload" src="${post.imgSrc}" alt="Post Thumbnail">
+                            <div class="post-details">
+                                <p class="post-date">${post.date}</p>
+                                <h3 class="post-title">${post.title}</h3>
+                            </div>
+                        </div>
+                    `;
+                    postList.innerHTML += postCard;
+                });
+                
+                document.getElementById('start-post').textContent = startIndex + 1;
+                document.getElementById('end-post').textContent = Math.min(endIndex, posts.length);
+                document.getElementById('total-posts').textContent = posts.length;
+            }
+
+            function renderPagination() {
+                const pagination = document.getElementById('pagination');
+                pagination.innerHTML = ''; // Clear existing content
+                
+                const totalPages = Math.ceil(posts.length / perPage);
+                
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('span');
+                    pageButton.className = 'page-number';
+                    if (i === currentPage) {
+                        pageButton.classList.add('active');
+                    }
+                    pageButton.textContent = i;
+                    pageButton.addEventListener('click', () => {
+                        currentPage = i;
+                        renderPosts(currentPage, perPage);
+                        renderPagination();
+                    });
+                    pagination.appendChild(pageButton);
+                }
+            }
+
+            document.getElementById('per-page').addEventListener('change', (e) => {
+                perPage = parseInt(e.target.value, 10);
+                renderPosts(currentPage, perPage);
+                renderPagination();
+            });
+
+            // Initial render
+            renderPosts(currentPage, perPage);
+            renderPagination();
+        </script>
+
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script src="api.js"></script>
+</body>
+</html>
